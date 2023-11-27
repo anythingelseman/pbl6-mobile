@@ -16,13 +16,13 @@ const UserAccountScreen = ({navigation}: any) => {
         />
       </View>
 
-      <View style={styles.profileContainer}>
+      {/* <View style={styles.profileContainer}>
         <Image
           source={require('../assets/image/avatar.png')}
           style={styles.avatarImage}
         />
         <Text style={styles.avatarText}>John Doe</Text>
-      </View>
+      </View> */}
 
       <View style={styles.profileContainer}>
         <SettingComponent
@@ -37,7 +37,7 @@ const UserAccountScreen = ({navigation}: any) => {
           subheading="Theme"
           subtitle="Permissions"
         />
-        <SettingComponent
+        {/* <SettingComponent
           icon="dollar"
           heading="Offers & Refferrals"
           subheading="Offer"
@@ -48,7 +48,7 @@ const UserAccountScreen = ({navigation}: any) => {
           heading="About"
           subheading="About Movies"
           subtitle="more"
-        />
+        /> */}
       </View>
     </View>
   );
