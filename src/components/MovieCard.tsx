@@ -49,30 +49,13 @@ const MovieCard = (props: any) => {
         ]}>
         <Image
           style={[styles.cardImage, {width: props.cardWidth}]}
-          source={{uri: props.imagePath}}
+          source={{uri: props.item.image}}
         />
 
         <View>
-          <View style={styles.rateContainer}>
-            <CustomIcon name="star" style={styles.starIcon} />
-            <Text style={styles.voteText}>
-              {props.vote_average} ({props.vote_count})
-            </Text>
-          </View>
-
           <Text numberOfLines={1} style={styles.textTitle}>
-            {props.title}
+            {props.item.name}
           </Text>
-
-          <View style={styles.genreContainer}>
-            {props.genre.map((item: any) => {
-              return (
-                <View key={item} style={styles.genreBox}>
-                  <Text style={styles.genreText}>{genres[item]}</Text>
-                </View>
-              );
-            })}
-          </View>
         </View>
       </View>
     </TouchableOpacity>
