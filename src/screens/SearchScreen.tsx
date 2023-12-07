@@ -6,26 +6,44 @@ import {
   Dimensions,
   StatusBar,
   FlatList,
+  ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import {COLORS, SPACING} from '../theme/theme';
 import {baseImagePath, searchMovies} from '../api/apicalls';
 import InputHeader from '../components/InputHeader';
 import SubMovieCard from '../components/SubMovieCard';
+import apiClient from '../services/apiClient';
 
 const {width, height} = Dimensions.get('screen');
 
 const SearchScreen = ({navigation}: any) => {
   const [searchList, setSearchList] = useState([]);
-
+  const [isFetching, setIsFetching] = useState(false);
   const searchMoviesFunction = async (name: string) => {
     try {
-      let response = await fetch(searchMovies(name));
-      let json = await response.json();
-      setSearchList(json.results);
+      setIsFetching(true);
+      let response = await apiClient.get(`/film?Keyword=${name}&OrderBy=id`);
+      setSearchList(response.data.data);
+      setIsFetching(false);
     } catch (error) {
       console.error('Something went wrong in searchMoviesFunction ', error);
     }
   };
+
+  if (isFetching) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.InputHeaderContainer}>
+          <InputHeader searchFunction={searchMoviesFunction} />
+        </View>
+
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size={'large'} color={COLORS.Orange} />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -49,11 +67,11 @@ const SearchScreen = ({navigation}: any) => {
               shoudlMarginatedAtEnd={false}
               shouldMarginatedAround={true}
               cardFunction={() => {
-                navigation.push('MovieDetails', {movieid: item.id});
+                navigation.push('MovieDetails', {filmId: item.id});
               }}
               cardWidth={width / 2 - SPACING.space_12 * 2}
-              title={item.original_title}
-              imagePath={baseImagePath('w342', item.poster_path)}
+              title={item.name}
+              imagePath={item.image}
             />
           )}
         />
@@ -78,6 +96,11 @@ const styles = StyleSheet.create({
   },
   centerContainer: {
     alignItems: 'center',
+  },
+  loadingContainer: {
+    flex: 1,
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 });
 

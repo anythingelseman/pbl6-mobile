@@ -282,7 +282,7 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
         <View style={styles.OutterContainer}>
           <FlatList
             data={availableSchedules}
-            keyExtractor={item => item}
+            keyExtractor={item => item.id}
             horizontal
             bounces={false}
             contentContainerStyle={styles.containerGap24}
