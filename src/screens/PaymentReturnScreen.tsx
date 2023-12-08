@@ -5,6 +5,7 @@ import {
   Modal,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import AppHeader from '../components/AppHeader';
@@ -12,6 +13,7 @@ import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import {getBookingById} from '../services/getBookingById';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomIcon from '../components/CustomIcon';
+import QRCode from 'react-native-qrcode-svg';
 
 const PaymentReturnScreen = ({navigation, route}: any) => {
   const [booking, setBooking] = useState<any>();
@@ -84,7 +86,7 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
   }
 
   return (
-    <View
+    <ScrollView
       style={{
         display: 'flex',
         flex: 1,
@@ -314,8 +316,42 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             </Text>
           </View>
         </View>
+        <View style={{alignItems: 'center', marginTop: 12}}>
+          <QRCode
+            logo={{uri: `data:image/jpeg;base64,${booking.qrCode}`}}
+            logoSize={30}
+            logoBackgroundColor="transparent"
+          />
+        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+          style={{
+            padding: 6,
+            backgroundColor: COLORS.Orange,
+            marginVertical: 18,
+            borderRadius: 6,
+            shadowColor: COLORS.Orange,
+            shadowOffset: {
+              width: 0,
+              height: 6,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 6,
+          }}>
+          <Text
+            style={{
+              fontFamily: FONTFAMILY.poppins_bold,
+              color: COLORS.White,
+              textAlign: 'center',
+              fontSize: FONTSIZE.size_16,
+            }}>
+            Return to homepage
+          </Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
