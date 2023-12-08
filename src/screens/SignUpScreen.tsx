@@ -10,6 +10,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppHeader from '../components/AppHeader';
 
 const SignUpScreen = ({navigation}: any) => {
+  const signUpHandle = () => {};
   return (
     <SafeAreaView
       style={{display: 'flex', flex: 1, backgroundColor: COLORS.Black}}>
@@ -80,6 +81,7 @@ const SignUpScreen = ({navigation}: any) => {
           />
         </View>
         <TouchableOpacity
+          onPress={signUpHandle}
           style={{
             padding: 12,
             backgroundColor: COLORS.Orange,

@@ -8,6 +8,8 @@ import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import {AuthProvider} from './src/context/AuthContext';
+import PaymentScreen from './src/screens/PaymentScreen';
+import PaymentReturnScreen from './src/screens/PaymentReturnScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +41,16 @@ const App = () => {
           <Stack.Screen
             name="Signup"
             component={SignUpScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="Payment"
+            component={PaymentScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="PaymentReturn"
+            component={PaymentReturnScreen}
             options={{animation: 'slide_from_right'}}
           />
         </Stack.Navigator>

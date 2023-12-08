@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const apiClient: AxiosInstance = axios.create({
     baseURL: "https://apideploy.azurewebsites.net/api/v1",
@@ -12,4 +13,18 @@ const apiClient: AxiosInstance = axios.create({
     },
   });
 
+
+  apiClient.interceptors.request.use(
+    async (config: InternalAxiosRequestConfig) => {
+        const user = await EncryptedStorage.getItem("USER") as any
+        if (user) {
+          config.headers.Authorization = `Bearer ${JSON.parse(user).token}`;
+        }
+      
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    },
+  );    
   export default apiClient;

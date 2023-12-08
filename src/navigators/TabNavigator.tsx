@@ -66,28 +66,7 @@ const TabNavigator = () => {
           },
         }}
       />
-      <Tab.Screen
-        name="Ticket"
-        component={TicketScreen}
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused, color, size}) => {
-            return (
-              <View
-                style={[
-                  styles.activeTabBackground,
-                  focused ? {backgroundColor: COLORS.Orange} : {},
-                ]}>
-                <CustomIcon
-                  name="ticket"
-                  color={COLORS.White}
-                  size={FONTSIZE.size_30}
-                />
-              </View>
-            );
-          },
-        }}
-      />
+
       <Tab.Screen
         name="User"
         component={UserAccountScreen}

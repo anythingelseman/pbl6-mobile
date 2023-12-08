@@ -9,7 +9,7 @@ import {useAuth} from '../context/AuthContext';
 const UserAccountScreen = ({navigation}: any) => {
   const {user} = useAuth();
 
-  if (user) return <UserAccount />;
+  if (user) return <UserAccount navigation={navigation} />;
   else return <NotLoggedIn navigation={navigation} />;
 };
 
