@@ -23,17 +23,13 @@ const InputHeader = (props: any) => {
         style={styles.textInput}
         onChangeText={textInput => setSearchText(textInput)}
         value={searchText}
-        placeholder="Search your Movies..."
-        placeholderTextColor={COLORS.WhiteRGBA32}
+        placeholder="Nhập tên phim cần tìm"
+        placeholderTextColor={COLORS.Black}
       />
       <TouchableOpacity
         style={styles.searchIcon}
         onPress={() => props.searchFunction(searchText)}>
-        <CustomIcon
-          name="search"
-          color={COLORS.Orange}
-          size={FONTSIZE.size_20}
-        />
+        <CustomIcon name="search" color={COLORS.Blue} size={FONTSIZE.size_20} />
       </TouchableOpacity>
     </View>
   );
@@ -45,15 +41,16 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.space_8,
     paddingHorizontal: SPACING.space_24,
     borderWidth: 2,
-    borderColor: COLORS.WhiteRGBA15,
+    borderColor: COLORS.Blue,
     borderRadius: BORDERRADIUS.radius_25,
     flexDirection: 'row',
+    backgroundColor: COLORS.FaintWhite,
   },
   textInput: {
     width: '90%',
-    fontFamily: FONTFAMILY.poppins_regular,
+    fontFamily: FONTFAMILY.nunitosans_regular,
     fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    color: COLORS.Black,
   },
   searchIcon: {
     alignItems: 'center',

@@ -16,34 +16,25 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import {useAuth} from './../context/AuthContext';
 import DatePicker from 'react-native-date-picker';
 import apiClient from '../services/apiClient';
-import {err} from 'react-native-svg';
-const LoginScreen = ({navigation}: any) => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [dateString, setDateString] = useState('');
-  const [password, setPassword] = useState('');
-  const [date, setDate] = useState<Date | undefined>(undefined);
-  const [open, setOpen] = useState(false);
+const ChangeUserDetailsScreen = ({navigation, route}: any) => {
+  const [name, setName] = useState(route.params.customer.customerName);
+  const [address, setAddress] = useState(route.params.customer.address);
+  const [phone, setPhone] = useState(route.params.customer.phoneNumber);
+  const [dateString, setDateString] = useState(
+    new Date(route.params.customer.dateOfBirth).toLocaleDateString(),
+  );
   const [isLoading, setIsLoading] = useState(false);
+  const [date, setDate] = useState<Date>(
+    new Date(route.params.customer.dateOfBirth),
+  );
+  const [open, setOpen] = useState(false);
+  const {user} = useAuth();
 
   const handleSubmit = async () => {
     if (phone.length < 8 || phone.length > 10) {
       ToastAndroid.show('Số điện thoại phải từ 8 đến 10 số', 2000);
       return;
     }
-    if (!email) {
-      ToastAndroid.show('Email không được để trống', 2000);
-      return;
-    }
-
-    if (!password) {
-      ToastAndroid.show('Mật khẩu không được để trống', 2000);
-      return;
-    }
-
     if (!name) {
       ToastAndroid.show('Tên không được để trống', 2000);
       return;
@@ -59,24 +50,13 @@ const LoginScreen = ({navigation}: any) => {
       return;
     }
 
-    if (!confirmPassword) {
-      ToastAndroid.show('Xin hãy xác nhận lại mật khẩu', 2000);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      ToastAndroid.show('Mật khẩu xác nhận không trùng khớp', 2000);
-      return;
-    }
-
     if (!date) {
       ToastAndroid.show('Ngày sinh không được để trống', 2000);
       return;
     }
 
     const formData = {
-      username: email,
-      password: password,
+      id: user.userId,
       customerName: name,
       address: address,
       phoneNumber: phone,
@@ -87,14 +67,14 @@ const LoginScreen = ({navigation}: any) => {
 
     try {
       setIsLoading(true);
-      const response = await apiClient.post(
+      const response = await apiClient.put(
         `/customer`,
         JSON.stringify(formData),
       );
       const result = response.data;
       if (result.succeeded == true) {
-        ToastAndroid.show('Đăng ký thành công', 2000);
-        navigation.navigate('Login');
+        ToastAndroid.show('Thay đổi thành công', 2000);
+        navigation.navigate('Home');
       }
       setIsLoading(false);
     } catch (error: any) {
@@ -114,7 +94,7 @@ const LoginScreen = ({navigation}: any) => {
         }}>
         <AppHeader
           name="close"
-          header={'Đăng ký'}
+          header={'Thay đổi thông tin'}
           action={() => navigation.goBack()}
         />
       </View>
@@ -133,38 +113,38 @@ const LoginScreen = ({navigation}: any) => {
               fontFamily: FONTFAMILY.nunitosans_bold,
               marginTop: 18,
             }}>
-            Đăng ký ngay
+            Thay đổi thông tin
           </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: FONTSIZE.size_30,
-              color: COLORS.Blue,
-              fontFamily: FONTFAMILY.nunitosans_bold,
-              marginBottom: 18,
-            }}>
-            Nhận ưu đãi
-          </Text>
+
           {/* <Text
-            style={{
-              fontFamily: FONTFAMILY.nunitosans_bold,
-              fontSize: FONTSIZE.size_20,
-              maxWidth: '80%',
-              textAlign: 'center',
-              color: COLORS.Black,
-            }}>
-            Tạo ngay tài khoản
-          </Text> */}
+              style={{
+                fontFamily: FONTFAMILY.nunitosans_bold,
+                fontSize: FONTSIZE.size_20,
+                maxWidth: '80%',
+                textAlign: 'center',
+                color: COLORS.Black,
+              }}>
+              Tạo ngay tài khoản
+            </Text> */}
         </View>
         <View
           style={{
             marginVertical: 10,
           }}>
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_bold,
+              fontSize: FONTSIZE.size_16,
+              marginTop: 6,
+            }}>
+            Họ và tên
+          </Text>
           <TextInput
             value={name}
             onChangeText={text => setName(text)}
             placeholder="Họ và tên"
-            placeholderTextColor={COLORS.Black}
+            placeholderTextColor={COLORS.BlackRGB10}
             style={{
               color: COLORS.Black,
               fontFamily: FONTFAMILY.nunitosans_regular,
@@ -175,28 +155,20 @@ const LoginScreen = ({navigation}: any) => {
               marginVertical: 12,
             }}
           />
-
-          <TextInput
-            value={email}
-            onChangeText={text => setEmail(text)}
-            placeholder="Nhập email"
-            placeholderTextColor={COLORS.Black}
+          <Text
             style={{
               color: COLORS.Black,
-              fontFamily: FONTFAMILY.nunitosans_regular,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               fontSize: FONTSIZE.size_16,
-              padding: 12,
-              backgroundColor: COLORS.FaintWhite,
-              borderRadius: 6,
-              marginVertical: 12,
-            }}
-          />
-
+              marginTop: 6,
+            }}>
+            Địa chỉ
+          </Text>
           <TextInput
             value={address}
             onChangeText={text => setAddress(text)}
             placeholder="Nhập địa chỉ"
-            placeholderTextColor={COLORS.Black}
+            placeholderTextColor={COLORS.BlackRGB10}
             style={{
               color: COLORS.Black,
               fontFamily: FONTFAMILY.nunitosans_regular,
@@ -207,12 +179,20 @@ const LoginScreen = ({navigation}: any) => {
               marginVertical: 12,
             }}
           />
-
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_bold,
+              fontSize: FONTSIZE.size_16,
+              marginTop: 6,
+            }}>
+            Số điện thoại
+          </Text>
           <TextInput
             value={phone}
             onChangeText={text => setPhone(text)}
             placeholder="Nhập số điện thoại"
-            placeholderTextColor={COLORS.Black}
+            placeholderTextColor={COLORS.BlackRGB10}
             style={{
               color: COLORS.Black,
               fontFamily: FONTFAMILY.nunitosans_regular,
@@ -223,11 +203,20 @@ const LoginScreen = ({navigation}: any) => {
               marginVertical: 12,
             }}
           />
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_bold,
+              fontSize: FONTSIZE.size_16,
+              marginTop: 6,
+            }}>
+            Ngày sinh
+          </Text>
           <DatePicker
             maximumDate={new Date()}
             modal
             open={open}
-            date={new Date()}
+            date={date}
             onConfirm={date => {
               setOpen(false);
               setDate(date);
@@ -247,7 +236,7 @@ const LoginScreen = ({navigation}: any) => {
               editable={false}
               value={dateString ? dateString : 'Ngày sinh'}
               placeholder="Ngày sinh"
-              placeholderTextColor={COLORS.Black}
+              placeholderTextColor={COLORS.BlackRGB10}
               style={{
                 color: COLORS.Black,
                 fontFamily: FONTFAMILY.nunitosans_regular,
@@ -259,40 +248,6 @@ const LoginScreen = ({navigation}: any) => {
               }}
             />
           </TouchableOpacity>
-
-          <TextInput
-            value={password}
-            secureTextEntry
-            onChangeText={text => setPassword(text)}
-            placeholder="Nhập mật khẩu"
-            placeholderTextColor={COLORS.Black}
-            style={{
-              color: COLORS.Black,
-              fontFamily: FONTFAMILY.nunitosans_regular,
-              fontSize: FONTSIZE.size_16,
-              padding: 12,
-              backgroundColor: COLORS.FaintWhite,
-              borderRadius: 6,
-              marginVertical: 12,
-            }}
-          />
-
-          <TextInput
-            value={confirmPassword}
-            secureTextEntry
-            onChangeText={text => setConfirmPassword(text)}
-            placeholder="Xác nhận mật khẩu"
-            placeholderTextColor={COLORS.Black}
-            style={{
-              color: COLORS.Black,
-              fontFamily: FONTFAMILY.nunitosans_regular,
-              fontSize: FONTSIZE.size_16,
-              padding: 12,
-              backgroundColor: COLORS.FaintWhite,
-              borderRadius: 6,
-              marginVertical: 12,
-            }}
-          />
         </View>
         <TouchableOpacity
           onPress={handleSubmit}
@@ -317,31 +272,7 @@ const LoginScreen = ({navigation}: any) => {
               textAlign: 'center',
               fontSize: FONTSIZE.size_20,
             }}>
-            {isLoading ? 'Đang đăng ký...' : 'Đăng ký'}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
-          style={{
-            padding: 12,
-          }}>
-          <Text
-            style={{
-              fontFamily: FONTFAMILY.nunitosans_semibold,
-              color: COLORS.Black,
-              textAlign: 'center',
-              fontSize: FONTSIZE.size_16,
-            }}>
-            Đã có tài khoản ?
-          </Text>
-          <Text
-            style={{
-              fontFamily: FONTFAMILY.nunitosans_semibold,
-              color: COLORS.Black,
-              textAlign: 'center',
-              fontSize: FONTSIZE.size_16,
-            }}>
-            Đăng nhập ngay
+            {isLoading ? 'Đang thay đổi...' : 'Xác nhận'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -349,4 +280,4 @@ const LoginScreen = ({navigation}: any) => {
   );
 };
 
-export default LoginScreen;
+export default ChangeUserDetailsScreen;

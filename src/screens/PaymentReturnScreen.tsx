@@ -62,7 +62,7 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
         style={{
           display: 'flex',
           flex: 1,
-          backgroundColor: COLORS.Black,
+          backgroundColor: COLORS.FaintWhite,
         }}
         contentContainerStyle={{flex: 1}}
         bounces={false}
@@ -79,7 +79,7 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
           />
         </View>
         <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
-          <ActivityIndicator size={'large'} color={COLORS.Orange} />
+          <ActivityIndicator size={'large'} color={COLORS.Blue} />
         </View>
       </ScrollView>
     );
@@ -90,7 +90,7 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
       style={{
         display: 'flex',
         flex: 1,
-        backgroundColor: COLORS.Black,
+        backgroundColor: COLORS.FaintWhite,
       }}>
       <View style={{marginTop: 10}}>
         <AppHeader
@@ -101,7 +101,7 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
       </View>
       <View
         style={{
-          backgroundColor: COLORS.Grey,
+          backgroundColor: COLORS.White,
           marginHorizontal: 30,
           marginVertical: 20,
           borderRadius: 6,
@@ -110,30 +110,30 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
         }}>
         <Text
           style={{
-            color: COLORS.Orange,
+            color: COLORS.Blue,
             textAlign: 'center',
             fontSize: 26,
-            fontFamily: FONTFAMILY.poppins_bold,
+            fontFamily: FONTFAMILY.nunitosans_bold,
           }}>
-          Booking succesfully
+          Đặt vé thành công
         </Text>
         <CustomIcon
           name="ticket"
           style={{
-            color: COLORS.Orange,
+            color: COLORS.Blue,
             textAlign: 'center',
             fontSize: 80,
-            fontFamily: FONTFAMILY.poppins_bold,
+            fontFamily: FONTFAMILY.nunitosans_bold,
           }}
         />
         <Text
           style={{
-            color: COLORS.Orange,
+            color: COLORS.Blue,
             textAlign: 'center',
             fontSize: 20,
-            fontFamily: FONTFAMILY.poppins_bold,
+            fontFamily: FONTFAMILY.nunitosans_bold,
           }}>
-          Thank you for choosing our cinema
+          Cảm ơn quý khách vì đã lựa chọn chúng tôi
         </Text>
         <View style={{marginTop: 6}}>
           <View
@@ -147,17 +147,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Film
+              Phim
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {booking.filmName}
             </Text>
@@ -172,17 +172,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Premiere time
+              Giờ chiếu
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {transformDate(new Date(booking.startTime))}
             </Text>
@@ -197,17 +197,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Cinema
+              Rạp phim
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {booking.cinemaName}
             </Text>
@@ -222,17 +222,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Room
+              Phòng chiếu
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {booking.roomName}
             </Text>
@@ -247,17 +247,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Seats
+              Ghế đã chọn
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {seats}
             </Text>
@@ -272,17 +272,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Booking time
+              Thời gian đặt
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {transformDate(new Date(booking.bookingDate))}
             </Text>
@@ -297,17 +297,17 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
             }}>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
-              Total amount paid
+              Số tiền thanh toán
             </Text>
             <Text
               style={{
-                color: COLORS.White,
+                color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,
-                fontFamily: FONTFAMILY.poppins_semibold,
+                fontFamily: FONTFAMILY.nunitosans_semibold,
               }}>
               {new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
@@ -329,10 +329,10 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
           }}
           style={{
             padding: 6,
-            backgroundColor: COLORS.Orange,
+            backgroundColor: COLORS.Blue,
             marginVertical: 18,
             borderRadius: 6,
-            shadowColor: COLORS.Orange,
+            shadowColor: COLORS.Blue,
             shadowOffset: {
               width: 0,
               height: 6,
@@ -342,12 +342,12 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
           }}>
           <Text
             style={{
-              fontFamily: FONTFAMILY.poppins_bold,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               color: COLORS.White,
               textAlign: 'center',
               fontSize: FONTSIZE.size_16,
             }}>
-            Return to homepage
+            Trở về trang chủ
           </Text>
         </TouchableOpacity>
       </View>

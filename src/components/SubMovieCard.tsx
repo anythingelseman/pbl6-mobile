@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
   },
   cardImage: {
     aspectRatio: 2 / 3,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: FONTFAMILY.poppins_regular,
     fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    color: COLORS.Black,
     textAlign: 'center',
     paddingVertical: SPACING.space_10,
   },

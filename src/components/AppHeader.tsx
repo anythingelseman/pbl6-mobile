@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
   },
   headerText: {
     flex: 1,
-    fontFamily: FONTFAMILY.poppins_medium,
+    fontFamily: FONTFAMILY.nunitosans_medium,
     fontSize: FONTSIZE.size_20,
     textAlign: 'center',
-    color: COLORS.White,
+    color: COLORS.Black,
   },
   emptyContainer: {
     height: SPACING.space_20 * 2,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: BORDERRADIUS.radius_20,
-    backgroundColor: COLORS.Orange,
+    backgroundColor: COLORS.Blue,
   },
 });
 

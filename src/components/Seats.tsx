@@ -71,7 +71,7 @@ export function Seats({
                   key={index}>
                   <Text
                     style={{
-                      color: COLORS.White,
+                      color: COLORS.Black,
                       fontFamily: FONTFAMILY.poppins_semibold,
                       textAlign: 'center',
                     }}>
@@ -102,7 +102,7 @@ export function Seats({
                 }}>
                 <Text
                   style={{
-                    color: COLORS.White,
+                    color: COLORS.Black,
                     fontFamily: FONTFAMILY.poppins_semibold,
                   }}>
                   {row}

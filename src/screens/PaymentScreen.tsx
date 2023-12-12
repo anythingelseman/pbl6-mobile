@@ -12,7 +12,7 @@ const PaymentScreen = ({navigation, route}: any) => {
     }
   };
   return (
-    <View style={{display: 'flex', flex: 1, backgroundColor: COLORS.Black}}>
+    <View style={{display: 'flex', flex: 1, backgroundColor: COLORS.White}}>
       <View
         style={{
           marginHorizontal: SPACING.space_20,
@@ -21,7 +21,7 @@ const PaymentScreen = ({navigation, route}: any) => {
         }}>
         <AppHeader
           name="close"
-          header={'Payment page'}
+          header={'Trang thanh toán'}
           action={() => navigation.goBack()}
         />
       </View>

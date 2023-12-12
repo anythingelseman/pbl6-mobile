@@ -51,7 +51,7 @@ const HomeScreen = ({navigation}: any) => {
         </View>
 
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size={'large'} color={COLORS.Orange} />
+          <ActivityIndicator size={'large'} color={COLORS.Blue} />
         </View>
       </ScrollView>
     );
@@ -65,7 +65,7 @@ const HomeScreen = ({navigation}: any) => {
         <InputHeader searchFunction={searchMoviesFunction} />
       </View>
 
-      <CategoryHeader title={'Now Playing'} />
+      <CategoryHeader title={'Đang chiếu'} />
       <FlatList
         data={nowPlayingMoviesList}
         keyExtractor={(item: any) => item.id}
@@ -149,7 +149,7 @@ const HomeScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
   },
   scrollViewContainer: {
     flex: 1,

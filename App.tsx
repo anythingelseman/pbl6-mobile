@@ -10,6 +10,10 @@ import HomeScreen from './src/screens/HomeScreen';
 import {AuthProvider} from './src/context/AuthContext';
 import PaymentScreen from './src/screens/PaymentScreen';
 import PaymentReturnScreen from './src/screens/PaymentReturnScreen';
+import UserDetailsScreen from './src/screens/UserDetailsScreen';
+import ChangeUserDetailsScreen from './src/screens/ChangeUserDetailsScreen';
+import BookingHistoryScreen from './src/screens/BookingHistoryScreen';
+import BookingDetailsScreen from './src/screens/BookingDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +55,26 @@ const App = () => {
           <Stack.Screen
             name="PaymentReturn"
             component={PaymentReturnScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="UserDetails"
+            component={UserDetailsScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="ChangeUserDetails"
+            component={ChangeUserDetailsScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="BookingHistory"
+            component={BookingHistoryScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="BookingDetails"
+            component={BookingDetailsScreen}
             options={{animation: 'slide_from_right'}}
           />
         </Stack.Navigator>

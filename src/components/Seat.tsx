@@ -13,9 +13,9 @@ export function Seat({
   onSelectSeat: () => void;
 }) {
   let seatColor;
-  if (seat.status === 2 || seat.status === 3) seatColor = COLORS.Grey;
-  else if (isSelected && seat.status === 1) seatColor = COLORS.Orange;
-  else seatColor = COLORS.White;
+  if (seat.status === 2 || seat.status === 3) seatColor = COLORS.FaintWhite;
+  else if (isSelected && seat.status === 1) seatColor = COLORS.Blue;
+  else seatColor = COLORS.Black;
   return (
     <View
       style={{

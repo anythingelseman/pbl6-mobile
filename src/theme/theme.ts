@@ -43,6 +43,8 @@ interface Color {
   WhiteRGBA50: string;
   WhiteRGBA32: string;
   WhiteRGBA15: string;
+  Blue: string;
+  FaintWhite:string;
 }
 
 export const COLORS: Color = {
@@ -58,6 +60,8 @@ export const COLORS: Color = {
   WhiteRGBA50: 'rgba(255,255,255,0.50)',
   WhiteRGBA32: 'rgba(255,255,255,0.32)',
   WhiteRGBA15: 'rgba(255,255,255,0.15)',
+  Blue: '#034EA2',
+  FaintWhite:'#E5E7EB'
 };
 
 interface FontFamily {
@@ -70,6 +74,10 @@ interface FontFamily {
   poppins_regular: string;
   poppins_semibold: string;
   poppins_thin: string;
+  nunitosans_semibold: string;
+  nunitosans_regular:string;
+  nunitosans_bold: string;
+  nunitosans_medium: string;
 }
 
 export const FONTFAMILY: FontFamily = {
@@ -82,7 +90,12 @@ export const FONTFAMILY: FontFamily = {
   poppins_regular: 'Poppins-Regular',
   poppins_semibold: 'Poppins-SemiBold',
   poppins_thin: 'Poppins-Thin',
+  nunitosans_semibold: 'NunitoSans_7pt-SemiBold',
+  nunitosans_regular: 'NunitoSans_7pt-Regular',
+  nunitosans_bold: 'NunitoSans_7pt-Bold',
+  nunitosans_medium: 'NunitoSans_7pt-Medium',
 };
+
 
 interface FontSize {
   size_8: number;

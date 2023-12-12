@@ -17,9 +17,9 @@ const TabNavigator = () => {
         tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: COLORS.Black,
-          borderTopWidth: 0,
-          height: SPACING.space_10 * 10,
+          backgroundColor: COLORS.White,
+          borderTopWidth: 1,
+          height: SPACING.space_10 * 8,
         },
       }}>
       <Tab.Screen
@@ -32,11 +32,11 @@ const TabNavigator = () => {
               <View
                 style={[
                   styles.activeTabBackground,
-                  focused ? {backgroundColor: COLORS.Orange} : {},
+                  focused ? {backgroundColor: COLORS.Blue} : {},
                 ]}>
                 <CustomIcon
                   name="video"
-                  color={COLORS.White}
+                  color={focused ? COLORS.White : COLORS.Black}
                   size={FONTSIZE.size_30}
                 />
               </View>
@@ -54,11 +54,11 @@ const TabNavigator = () => {
               <View
                 style={[
                   styles.activeTabBackground,
-                  focused ? {backgroundColor: COLORS.Orange} : {},
+                  focused ? {backgroundColor: COLORS.Blue} : {},
                 ]}>
                 <CustomIcon
                   name="search"
-                  color={COLORS.White}
+                  color={focused ? COLORS.White : COLORS.Black}
                   size={FONTSIZE.size_30}
                 />
               </View>
@@ -77,11 +77,11 @@ const TabNavigator = () => {
               <View
                 style={[
                   styles.activeTabBackground,
-                  focused ? {backgroundColor: COLORS.Orange} : {},
+                  focused ? {backgroundColor: COLORS.Blue} : {},
                 ]}>
                 <CustomIcon
                   name="user"
-                  color={COLORS.White}
+                  color={focused ? COLORS.White : COLORS.Black}
                   size={FONTSIZE.size_30}
                 />
               </View>
@@ -95,7 +95,7 @@ const TabNavigator = () => {
 
 const styles = StyleSheet.create({
   activeTabBackground: {
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
     padding: SPACING.space_18,
     borderRadius: SPACING.space_18 * 10,
   },

@@ -39,7 +39,7 @@ const SearchScreen = ({navigation}: any) => {
         </View>
 
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size={'large'} color={COLORS.Orange} />
+          <ActivityIndicator size={'large'} color={COLORS.Blue} />
         </View>
       </View>
     );
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width,
     alignItems: 'center',
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
   },
   InputHeaderContainer: {
     display: 'flex',

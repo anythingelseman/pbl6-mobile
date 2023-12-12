@@ -149,7 +149,7 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
           />
         </View>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size={'large'} color={COLORS.Orange} />
+          <ActivityIndicator size={'large'} color={COLORS.Blue} />
         </View>
       </ScrollView>
     );
@@ -168,7 +168,7 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
           }}
           style={styles.imageBG}>
           <LinearGradient
-            colors={[COLORS.BlackRGB10, COLORS.Black]}
+            colors={[COLORS.WhiteRGBA15, COLORS.White]}
             style={styles.linearGradient}>
             <View style={styles.appHeaderContainer}>
               <AppHeader
@@ -207,42 +207,70 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
         <Text style={styles.descriptionText}>{movieData?.description}</Text>
 
         <View style={styles.infoBox}>
-          <Text style={styles.infoTitle}>Actor</Text>
-          <Text>{movieData.actor}</Text>
+          <Text style={styles.infoTitle}>Diễn viên</Text>
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
+            }}>
+            {movieData.actor}
+          </Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoTitle}>Director</Text>
-          <Text>{movieData.director}</Text>
+          <Text style={styles.infoTitle}>Đạo diễn</Text>
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
+            }}>
+            {movieData.director}
+          </Text>
         </View>
         <View style={styles.infoBox}>
-          <Text style={styles.infoTitle}>Country</Text>
-          <Text>{movieData.country}</Text>
+          <Text style={styles.infoTitle}>Nước</Text>
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
+            }}>
+            {movieData.country}
+          </Text>
         </View>
       </View>
 
       <View style={styles.infoContainer}>
-        <Text style={styles.inputTitle}>Select cinema</Text>
-        <Picker
-          selectedValue={selectedCinema}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedCinema(itemValue)
-          }>
-          {cinemaData.map(
-            (cinema: {
-              [x: string]: any;
-              name: string | undefined;
-              id: React.Key | null | undefined;
-            }) => {
-              return (
-                <Picker.Item
-                  label={`${cinema.name} - ${cinema.city}`}
-                  value={cinema.id}
-                  key={cinema.id}
-                />
-              );
-            },
-          )}
-        </Picker>
+        <Text style={styles.inputTitle}>Chọn rạp</Text>
+        <View
+          style={{
+            backgroundColor: COLORS.FaintWhite,
+            borderRadius: BORDERRADIUS.radius_25,
+            marginBottom: SPACING.space_20,
+          }}>
+          <Picker
+            style={{
+              color: COLORS.Black,
+            }}
+            selectedValue={selectedCinema}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedCinema(itemValue)
+            }>
+            {cinemaData.map(
+              (cinema: {
+                [x: string]: any;
+                name: string | undefined;
+                id: React.Key | null | undefined;
+              }) => {
+                return (
+                  <Picker.Item
+                    label={`${cinema.name} - ${cinema.city}`}
+                    value={cinema.id}
+                    key={cinema.id}
+                  />
+                );
+              },
+            )}
+          </Picker>
+        </View>
       </View>
 
       <View>
@@ -268,7 +296,7 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
                       ? {marginRight: SPACING.space_24}
                       : {},
                     index == selectedDateIndex
-                      ? {backgroundColor: COLORS.Orange}
+                      ? {backgroundColor: COLORS.Blue}
                       : {},
                   ]}>
                   <Text style={styles.dateText}>{item.date}</Text>
@@ -309,7 +337,7 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
                         : index == dateArray.length - 1
                         ? {marginRight: SPACING.space_24}
                         : {},
-                      index == 69 ? {backgroundColor: COLORS.Orange} : {},
+                      index == 69 ? {backgroundColor: COLORS.Blue} : {},
                     ]}>
                     <Text style={styles.timeText}>
                       {formatTimeFromDate(item.startTime)}
@@ -329,7 +357,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
   },
   loadingContainer: {
     flex: 1,
@@ -341,16 +369,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   infoTitle: {
-    color: COLORS.White,
+    color: COLORS.Black,
     fontSize: FONTSIZE.size_16,
     marginBottom: SPACING.space_2,
+    fontFamily: FONTFAMILY.nunitosans_regular,
   },
   inputTitle: {
     marginTop: SPACING.space_4,
     textAlign: 'center',
-    color: COLORS.White,
+    color: COLORS.Black,
     fontSize: FONTSIZE.size_20,
-    marginBottom: SPACING.space_2,
+    marginBottom: SPACING.space_10,
+    fontFamily: FONTFAMILY.nunitosans_regular,
   },
 
   appHeaderContainer: {
@@ -373,7 +403,7 @@ const styles = StyleSheet.create({
   },
   clockIcon: {
     fontSize: FONTSIZE.size_20,
-    color: COLORS.WhiteRGBA50,
+    color: COLORS.Black,
     marginRight: SPACING.space_8,
   },
   timeContainer: {
@@ -389,12 +419,12 @@ const styles = StyleSheet.create({
   runtimeText: {
     fontFamily: FONTFAMILY.poppins_medium,
     fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    color: COLORS.Black,
   },
   title: {
-    fontFamily: FONTFAMILY.poppins_regular,
+    fontFamily: FONTFAMILY.nunitosans_semibold,
     fontSize: FONTSIZE.size_24,
-    color: COLORS.White,
+    color: COLORS.Black,
     marginHorizontal: SPACING.space_36,
     marginVertical: SPACING.space_15,
     textAlign: 'center',
@@ -408,22 +438,22 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.space_12,
   },
   genreBox: {
-    borderColor: COLORS.WhiteRGBA50,
+    borderColor: COLORS.Black,
     borderWidth: 1,
     paddingHorizontal: SPACING.space_10,
     paddingVertical: SPACING.space_4,
     borderRadius: BORDERRADIUS.radius_25,
   },
   genreText: {
-    fontFamily: FONTFAMILY.poppins_regular,
+    fontFamily: FONTFAMILY.nunitosans_regular,
     fontSize: FONTSIZE.size_10,
-    color: COLORS.WhiteRGBA75,
+    color: COLORS.Black,
   },
   tagline: {
-    fontFamily: FONTFAMILY.poppins_thin,
+    fontFamily: FONTFAMILY.nunitosans_regular,
     fontSize: FONTSIZE.size_14,
     fontStyle: 'italic',
-    color: COLORS.White,
+    color: COLORS.Black,
     marginHorizontal: SPACING.space_36,
     marginVertical: SPACING.space_15,
     textAlign: 'center',
@@ -441,9 +471,9 @@ const styles = StyleSheet.create({
     color: COLORS.Yellow,
   },
   descriptionText: {
-    fontFamily: FONTFAMILY.poppins_light,
+    fontFamily: FONTFAMILY.nunitosans_regular,
     fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    color: COLORS.Black,
     textAlign: 'justify',
     marginBottom: SPACING.space_10,
   },
@@ -458,7 +488,7 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_25 * 2,
     paddingHorizontal: SPACING.space_24,
     paddingVertical: SPACING.space_10,
-    backgroundColor: COLORS.Orange,
+    backgroundColor: COLORS.Blue,
     fontFamily: FONTFAMILY.poppins_medium,
     fontSize: FONTSIZE.size_14,
     color: COLORS.White,
@@ -487,15 +517,15 @@ const styles = StyleSheet.create({
   timeText: {
     fontFamily: FONTFAMILY.poppins_regular,
     fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    color: COLORS.Black,
   },
   timeDiv: {
     paddingVertical: SPACING.space_10,
     borderWidth: 1,
-    borderColor: COLORS.WhiteRGBA50,
+    borderColor: COLORS.Black,
     paddingHorizontal: SPACING.space_20,
     borderRadius: BORDERRADIUS.radius_25,
-    backgroundColor: COLORS.DarkGrey,
+    backgroundColor: COLORS.White,
     alignItems: 'center',
     justifyContent: 'center',
   },

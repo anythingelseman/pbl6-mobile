@@ -4,7 +4,12 @@ import {ToastAndroid} from 'react-native';
 import EncryptedStorage from 'react-native-encrypted-storage';
 interface AuthContextProps {
   user: any;
-  login: (email: any, password: any, navigation: any) => any;
+  login: (
+    email: any,
+    password: any,
+    navigation: any,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => any;
   logout: () => void;
 }
 const AuthContext = createContext<AuthContextProps>({
@@ -27,14 +32,19 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     checkStorage();
   }, []);
 
-  const login = async (email: any, password: any, navigation: any) => {
+  const login = async (
+    email: any,
+    password: any,
+    navigation: any,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     if (!email) {
-      ToastAndroid.show('Please enter email', 2000);
+      ToastAndroid.show('Email không được để trống', 2000);
       return;
     }
 
     if (!password) {
-      ToastAndroid.show('Please enter password', 2000);
+      ToastAndroid.show('Mật khẩu không được để trống', 2000);
       return;
     }
 
@@ -44,6 +54,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     };
 
     try {
+      setIsLoading(true);
       const response = await axios.post(
         // `http://cinemawebapi.ddns.net:8001/api/identity/token/`,
         // `http://192.168.124.47:8001/api/identity/token`,
@@ -65,10 +76,12 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
       if (result.succeeded == true) {
         await EncryptedStorage.setItem('USER', JSON.stringify(result.data));
         setUser(result.data);
-        ToastAndroid.show('Log in successfully', 2000);
+        ToastAndroid.show('Đăng nhập thành công', 2000);
         navigation.navigate('Home');
+        setIsLoading(false);
       }
     } catch (error: any) {
+      setIsLoading(false);
       ToastAndroid.show(error.response.data.messages[0], 2000);
     }
   };
@@ -77,7 +90,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({children}) => {
     try {
       setUser(null);
       await EncryptedStorage.removeItem('USER');
-      ToastAndroid.show('Log out successfully', 2000);
+      ToastAndroid.show('Đăng xuất thành công', 2000);
     } catch (error: any) {
       ToastAndroid.show(error, 2000);
     }

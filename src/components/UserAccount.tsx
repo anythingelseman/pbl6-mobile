@@ -23,7 +23,7 @@ const UserAccount = ({navigation}: any) => {
       <View style={styles.appHeaderContainer}>
         <AppHeader
           name="close"
-          header={'My Profile'}
+          header={'Tài khoản'}
           action={() => navigation.goBack()}
         />
       </View>
@@ -38,16 +38,18 @@ const UserAccount = ({navigation}: any) => {
 
       <View style={styles.profileContainer}>
         <SettingComponent
+          action={() => navigation.navigate('UserDetails')}
           icon="user"
-          heading="Account"
-          subheading="Edit Profile"
-          subtitle="Change Password"
+          heading="Tài khoản"
+          subheading="Thông tin chi tiết"
+          subtitle="Thay đổi thông tin"
         />
         <SettingComponent
-          icon="setting"
-          heading="Settings"
-          subheading="Theme"
-          subtitle="Permissions"
+          action={() => navigation.navigate('BookingHistory')}
+          icon="dollar"
+          heading="Lịch sử đặt vé"
+          subheading="Xem chi tiết"
+          subtitle="Lấy mã QR"
         />
         {/* <SettingComponent
           icon="dollar"
@@ -65,10 +67,10 @@ const UserAccount = ({navigation}: any) => {
           onPress={logoutHandle}
           style={{
             padding: 12,
-            backgroundColor: COLORS.Orange,
+            backgroundColor: COLORS.Blue,
             marginVertical: 30,
             borderRadius: 6,
-            shadowColor: COLORS.Orange,
+            shadowColor: COLORS.Blue,
             shadowOffset: {
               width: 0,
               height: 6,
@@ -79,12 +81,12 @@ const UserAccount = ({navigation}: any) => {
           }}>
           <Text
             style={{
-              fontFamily: FONTFAMILY.poppins_bold,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               color: COLORS.White,
               textAlign: 'center',
               fontSize: FONTSIZE.size_20,
             }}>
-            Log out
+            Đăng xuất
           </Text>
         </TouchableOpacity>
       </View>
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: COLORS.Black,
+    backgroundColor: COLORS.White,
   },
   appHeaderContainer: {
     marginHorizontal: SPACING.space_36,

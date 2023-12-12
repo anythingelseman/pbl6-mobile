@@ -17,14 +17,14 @@ const LoginScreen = ({navigation}: any) => {
   const {login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async () => {
-    login(email, password, navigation);
+    login(email, password, navigation, setIsLoading);
   };
 
   return (
     <SafeAreaView
-      style={{display: 'flex', flex: 1, backgroundColor: COLORS.Black}}>
+      style={{display: 'flex', flex: 1, backgroundColor: COLORS.White}}>
       <View
         style={{
           marginHorizontal: 36,
@@ -32,32 +32,36 @@ const LoginScreen = ({navigation}: any) => {
         }}>
         <AppHeader
           name="close"
-          header={'Login'}
+          header={'Đăng nhập'}
           action={() => navigation.goBack()}
         />
       </View>
-      <View style={{padding: 12}}>
+      <View style={{padding: 16}}>
         <View
           style={{
             alignItems: 'center',
+            paddingHorizontal: 12,
+            justifyContent: 'center',
           }}>
           <Text
             style={{
+              textAlign: 'center',
               fontSize: FONTSIZE.size_30,
-              color: COLORS.Orange,
-              fontFamily: FONTFAMILY.poppins_bold,
+              color: COLORS.Blue,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               marginVertical: 18,
             }}>
-            Login here
+            Đăng nhập ngay Xem phim hay
           </Text>
           <Text
             style={{
-              fontFamily: FONTFAMILY.poppins_bold,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               fontSize: FONTSIZE.size_20,
               maxWidth: '80%',
               textAlign: 'center',
+              color: COLORS.Black,
             }}>
-            Welcome back you've been missed !
+            Chào mừng bạn trở lại !
           </Text>
         </View>
         <View
@@ -67,13 +71,14 @@ const LoginScreen = ({navigation}: any) => {
           <TextInput
             value={email}
             onChangeText={text => setEmail(text)}
-            placeholder="Email"
-            placeholderTextColor={COLORS.WhiteRGBA15}
+            placeholder="Nhập email"
+            placeholderTextColor={COLORS.Black}
             style={{
-              fontFamily: FONTFAMILY.poppins_regular,
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
               fontSize: FONTSIZE.size_16,
               padding: 12,
-              backgroundColor: COLORS.Grey,
+              backgroundColor: COLORS.FaintWhite,
               borderRadius: 6,
               marginVertical: 12,
               marginBottom: 30,
@@ -84,13 +89,14 @@ const LoginScreen = ({navigation}: any) => {
             value={password}
             secureTextEntry
             onChangeText={text => setPassword(text)}
-            placeholder="Password"
-            placeholderTextColor={COLORS.WhiteRGBA15}
+            placeholder="Nhập mật khẩu"
+            placeholderTextColor={COLORS.Black}
             style={{
-              fontFamily: FONTFAMILY.poppins_regular,
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
               fontSize: FONTSIZE.size_16,
               padding: 12,
-              backgroundColor: COLORS.Grey,
+              backgroundColor: COLORS.FaintWhite,
               borderRadius: 6,
               marginVertical: 6,
             }}
@@ -100,10 +106,10 @@ const LoginScreen = ({navigation}: any) => {
           onPress={handleSubmit}
           style={{
             padding: 12,
-            backgroundColor: COLORS.Orange,
+            backgroundColor: COLORS.Blue,
             marginVertical: 18,
             borderRadius: 6,
-            shadowColor: COLORS.Orange,
+            shadowColor: COLORS.Blue,
             shadowOffset: {
               width: 0,
               height: 6,
@@ -112,13 +118,14 @@ const LoginScreen = ({navigation}: any) => {
             shadowRadius: 6,
           }}>
           <Text
+            disabled={isLoading}
             style={{
-              fontFamily: FONTFAMILY.poppins_bold,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               color: COLORS.White,
               textAlign: 'center',
               fontSize: FONTSIZE.size_20,
             }}>
-            Sign in
+            {isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -128,12 +135,21 @@ const LoginScreen = ({navigation}: any) => {
           }}>
           <Text
             style={{
-              fontFamily: FONTFAMILY.poppins_semibold,
-              color: COLORS.White,
+              fontFamily: FONTFAMILY.nunitosans_semibold,
+              color: COLORS.Black,
               textAlign: 'center',
-              fontSize: FONTSIZE.size_14,
+              fontSize: FONTSIZE.size_16,
             }}>
-            Create new account
+            Chưa có tài khoản ?
+          </Text>
+          <Text
+            style={{
+              fontFamily: FONTFAMILY.nunitosans_semibold,
+              color: COLORS.Black,
+              textAlign: 'center',
+              fontSize: FONTSIZE.size_16,
+            }}>
+            Đăng ký ngay
           </Text>
         </TouchableOpacity>
       </View>

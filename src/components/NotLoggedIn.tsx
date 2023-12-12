@@ -20,10 +20,10 @@ const {height} = Dimensions.get('window');
 const NotLoggedIn = ({navigation}: any) => {
   return (
     <SafeAreaView
-      style={{display: 'flex', flex: 1, backgroundColor: COLORS.Black}}>
+      style={{display: 'flex', flex: 1, backgroundColor: COLORS.White}}>
       <View>
         <ImageBackground
-          style={{height: height / 2.5, marginTop: 2}}
+          style={{height: height / 2.5, marginTop: 25}}
           resizeMode="contain"
           source={require('../assets/image/popcorn.png')}
         />
@@ -35,22 +35,22 @@ const NotLoggedIn = ({navigation}: any) => {
           <Text
             style={{
               fontSize: FONTSIZE.size_30,
-              color: COLORS.White,
-              fontFamily: FONTFAMILY.poppins_bold,
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               textAlign: 'center',
             }}>
-            Watch your favorite movie here
+            Đăng nhập ngay xem phim hay
           </Text>
           <Text
             style={{
               fontSize: FONTSIZE.size_16,
-              color: COLORS.White,
-              fontFamily: FONTFAMILY.poppins_bold,
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_bold,
               textAlign: 'center',
-              marginTop: 2,
+              marginTop: 10,
             }}>
-            Dive into a world of film magic and discover captivating stories at
-            our cinema.
+            Đắm chìm trong thế giới nhiệm màu của điện ảnh và khám phá những câu
+            chuyện hấp dẫn tại rạp chiếu phim của chúng tôi.
           </Text>
         </View>
         <View
@@ -63,7 +63,7 @@ const NotLoggedIn = ({navigation}: any) => {
           <TouchableOpacity
             onPress={() => navigation.push('Login')}
             style={{
-              backgroundColor: COLORS.Orange,
+              backgroundColor: COLORS.Blue,
               paddingVertical: 9,
               paddingHorizontal: 12,
               width: '48%',
@@ -71,18 +71,18 @@ const NotLoggedIn = ({navigation}: any) => {
             }}>
             <Text
               style={{
-                fontFamily: FONTFAMILY.poppins_bold,
+                fontFamily: FONTFAMILY.nunitosans_bold,
                 fontSize: FONTSIZE.size_16,
                 textAlign: 'center',
                 color: COLORS.White,
               }}>
-              Login
+              Đăng nhập
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.push('Signup')}
             style={{
-              backgroundColor: COLORS.Orange,
+              backgroundColor: COLORS.Blue,
               paddingVertical: 9,
               paddingHorizontal: 12,
               width: '48%',
@@ -90,12 +90,12 @@ const NotLoggedIn = ({navigation}: any) => {
             }}>
             <Text
               style={{
-                fontFamily: FONTFAMILY.poppins_bold,
+                fontFamily: FONTFAMILY.nunitosans_bold,
                 fontSize: FONTSIZE.size_16,
                 textAlign: 'center',
                 color: COLORS.White,
               }}>
-              Register
+              Đăng ký
             </Text>
           </TouchableOpacity>
         </View>
