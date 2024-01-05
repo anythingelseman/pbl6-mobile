@@ -2,7 +2,7 @@ import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import EncryptedStorage from 'react-native-encrypted-storage';
 
 const apiClient: AxiosInstance = axios.create({
-    baseURL: "https://apideploy.azurewebsites.net/api/v1",
+    baseURL: "http://cinephilewebapi.southeastasia.cloudapp.azure.com/api/v1",
     transformRequest: [],
     headers: {
       Accept: "application/json; multipart/form-data",

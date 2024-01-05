@@ -158,6 +158,33 @@ const UserDetailsScreen = ({navigation}: any) => {
                   fontSize: FONTSIZE.size_14,
                   fontFamily: FONTFAMILY.nunitosans_semibold,
                 }}>
+                Email:
+              </Text>
+              <Text
+                style={{
+                  color: COLORS.Black,
+                  fontSize: FONTSIZE.size_14,
+                  fontFamily: FONTFAMILY.nunitosans_semibold,
+                }}>
+                {customer.email}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginTop: 8,
+                marginBottom: 8,
+              }}>
+              <Text
+                style={{
+                  color: COLORS.Black,
+                  fontSize: FONTSIZE.size_14,
+                  fontFamily: FONTFAMILY.nunitosans_semibold,
+                }}>
                 Số điện thoại:
               </Text>
               <Text

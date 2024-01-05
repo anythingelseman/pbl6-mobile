@@ -57,7 +57,7 @@ export function Seats({
               width: 20,
               height: 20,
             }}></View>
-          {Array(Object.keys(rows).length)
+          {Array(rows[Object.keys(rows)[0]].length)
             .fill(0)
             .map((v, index) => {
               return (

@@ -123,6 +123,7 @@ const BookingDetailsScreen = ({navigation, route}: any) => {
                   color: COLORS.Black,
                   fontSize: FONTSIZE.size_14,
                   fontFamily: FONTFAMILY.nunitosans_semibold,
+                  maxWidth: '60%',
                 }}>
                 {booking.filmName}
               </Text>
@@ -173,6 +174,7 @@ const BookingDetailsScreen = ({navigation, route}: any) => {
                   color: COLORS.Black,
                   fontSize: FONTSIZE.size_14,
                   fontFamily: FONTFAMILY.nunitosans_semibold,
+                  maxWidth: '60%',
                 }}>
                 {booking.cinemaName}
               </Text>

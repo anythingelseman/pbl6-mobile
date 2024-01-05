@@ -204,6 +204,8 @@ const PaymentReturnScreen = ({navigation, route}: any) => {
               Rạp phim
             </Text>
             <Text
+              numberOfLines={2}
+              ellipsizeMode="tail"
               style={{
                 color: COLORS.Black,
                 fontSize: FONTSIZE.size_14,

@@ -57,6 +57,18 @@ const MovieCard = (props: any) => {
             {props.item.name}
           </Text>
         </View>
+        {/* 
+        <View style={styles.rateContainer}>
+          <CustomIcon
+            name="star"
+            style={styles.starIcon}
+            color={COLORS.Yellow}
+          />
+          <Text style={styles.voteText}>
+            {props.item.score == 0 ? 'N/A' : ''}
+            {props.item.score} ({props.item.numberOfVotes})
+          </Text>
+        </View> */}
       </View>
     </TouchableOpacity>
   );
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
     gap: SPACING.space_10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: SPACING.space_10,
+    marginTop: 0,
   },
   starIcon: {
     fontSize: FONTSIZE.size_20,
@@ -92,8 +104,8 @@ const styles = StyleSheet.create({
   },
   voteText: {
     fontFamily: FONTFAMILY.poppins_medium,
-    fontSize: FONTSIZE.size_14,
-    color: COLORS.White,
+    fontSize: FONTSIZE.size_16,
+    color: COLORS.Black,
   },
   genreContainer: {
     flex: 1,

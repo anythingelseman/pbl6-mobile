@@ -14,6 +14,7 @@ import UserDetailsScreen from './src/screens/UserDetailsScreen';
 import ChangeUserDetailsScreen from './src/screens/ChangeUserDetailsScreen';
 import BookingHistoryScreen from './src/screens/BookingHistoryScreen';
 import BookingDetailsScreen from './src/screens/BookingDetailsScreen';
+import ConfirmEmailScreen from './src/screens/ConfirmEmailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -75,6 +76,11 @@ const App = () => {
           <Stack.Screen
             name="BookingDetails"
             component={BookingDetailsScreen}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name="ConfirmEmail"
+            component={ConfirmEmailScreen}
             options={{animation: 'slide_from_right'}}
           />
         </Stack.Navigator>

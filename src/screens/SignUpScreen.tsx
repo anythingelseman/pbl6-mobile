@@ -25,15 +25,25 @@ const LoginScreen = ({navigation}: any) => {
   const [phone, setPhone] = useState('');
   const [dateString, setDateString] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // const handleSubmit = () => {
+  //   navigation.navigate('ConfirmEmail');
+  // };
 
   const handleSubmit = async () => {
     if (phone.length < 8 || phone.length > 10) {
       ToastAndroid.show('Số điện thoại phải từ 8 đến 10 số', 2000);
       return;
     }
+    if (!username) {
+      ToastAndroid.show('Tên đăng nhập không được để trống', 2000);
+      return;
+    }
+
     if (!email) {
       ToastAndroid.show('Email không được để trống', 2000);
       return;
@@ -75,7 +85,8 @@ const LoginScreen = ({navigation}: any) => {
     }
 
     const formData = {
-      username: email,
+      username: username,
+      email: email,
       password: password,
       customerName: name,
       address: address,
@@ -94,7 +105,7 @@ const LoginScreen = ({navigation}: any) => {
       const result = response.data;
       if (result.succeeded == true) {
         ToastAndroid.show('Đăng ký thành công', 2000);
-        navigation.navigate('Login');
+        navigation.navigate('ConfirmEmail');
       }
       setIsLoading(false);
     } catch (error: any) {
@@ -180,6 +191,22 @@ const LoginScreen = ({navigation}: any) => {
             value={email}
             onChangeText={text => setEmail(text)}
             placeholder="Nhập email"
+            placeholderTextColor={COLORS.Black}
+            style={{
+              color: COLORS.Black,
+              fontFamily: FONTFAMILY.nunitosans_regular,
+              fontSize: FONTSIZE.size_16,
+              padding: 12,
+              backgroundColor: COLORS.FaintWhite,
+              borderRadius: 6,
+              marginVertical: 12,
+            }}
+          />
+
+          <TextInput
+            value={username}
+            onChangeText={text => setUsername(text)}
+            placeholder="Nhập tên đăng nhập"
             placeholderTextColor={COLORS.Black}
             style={{
               color: COLORS.Black,

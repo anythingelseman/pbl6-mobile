@@ -20,6 +20,7 @@ const ChangeUserDetailsScreen = ({navigation, route}: any) => {
   const [name, setName] = useState(route.params.customer.customerName);
   const [address, setAddress] = useState(route.params.customer.address);
   const [phone, setPhone] = useState(route.params.customer.phoneNumber);
+  const [email, setEmail] = useState(route.params.customer.email);
   const [dateString, setDateString] = useState(
     new Date(route.params.customer.dateOfBirth).toLocaleDateString(),
   );
@@ -61,6 +62,7 @@ const ChangeUserDetailsScreen = ({navigation, route}: any) => {
       address: address,
       phoneNumber: phone,
       dateOfBirth: date,
+      email: email,
     };
 
     console.log(formData);

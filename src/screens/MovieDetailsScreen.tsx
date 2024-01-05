@@ -10,6 +10,8 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Modal,
+  ToastAndroid,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {
@@ -26,6 +28,7 @@ import CategoryHeader from '../components/CategoryHeader';
 import CastCard from '../components/CastCard';
 import apiClient from '../services/apiClient';
 import {useAuth} from '../context/AuthContext';
+import addRating from '../services/addRating';
 
 const MovieDetailsScreen = ({navigation, route}: any) => {
   const [movieData, setMovieData] = useState<any>(undefined);
@@ -34,6 +37,8 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
   const [selectedCinema, setSelectedCinema] = useState<any>(undefined);
   const [selectedDate, setSelectedDate] = useState<any>();
   const [selectedDateIndex, setSelectedDateIndex] = useState<any>();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [rating, setRating] = useState(0);
 
   const {user} = useAuth();
 
@@ -65,6 +70,8 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
 
     return result;
   }
+
+  const stars = Array(10).fill(0);
 
   const generateDate = () => {
     const date = new Date();
@@ -154,12 +161,168 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
       </ScrollView>
     );
   }
+  const ratingHandler = async () => {
+    await addRating({filmId: movieData.id, score: rating});
+    const response = await apiClient.get(`/film/${route.params.filmId}`);
+    setMovieData(response.data.data);
+    setModalOpen(false);
+  };
+
   return (
     <ScrollView
       style={styles.container}
       bounces={false}
       showsVerticalScrollIndicator={false}>
       <StatusBar hidden />
+
+      <Modal visible={modalOpen} animationType="slide" transparent={true}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          }}>
+          <View
+            style={{
+              height: '50%',
+              backgroundColor: 'white',
+              marginHorizontal: SPACING.space_24,
+              borderRadius: 6,
+            }}>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginVertical: 10,
+              }}>
+              <Image
+                source={{uri: movieData?.image[0]}}
+                style={{width: '30%', aspectRatio: 200 / 300}}
+              />
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 10,
+                marginBottom: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: FONTFAMILY.nunitosans_semibold,
+                  color: COLORS.Black,
+                  fontSize: 20,
+                }}>
+                Chấm điểm
+              </Text>
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: FONTFAMILY.nunitosans_semibold,
+                  color: COLORS.Black,
+                  fontSize: 16,
+                }}>
+                {movieData?.name}
+              </Text>
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: FONTFAMILY.nunitosans_semibold,
+                  color: COLORS.Black,
+                  fontSize: 16,
+                }}>
+                {rating}
+              </Text>
+
+              <View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 4,
+                    marginTop: 10,
+                  }}>
+                  {stars.map((_, index) => {
+                    return (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => setRating(index + 1)}>
+                        <CustomIcon
+                          name="star"
+                          size={25}
+                          color={index < rating ? COLORS.Yellow : 'grey'}
+                        />
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                flex: 1,
+                marginTop: 10,
+              }}>
+              <TouchableOpacity
+                onPress={() => setModalOpen(false)}
+                style={{
+                  width: '50%',
+                  backgroundColor: COLORS.FaintWhite,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: COLORS.Black,
+                    textAlign: 'center',
+                    alignSelf: 'center',
+                    fontSize: 16,
+                    fontFamily: FONTFAMILY.nunitosans_semibold,
+                  }}>
+                  Hủy
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={ratingHandler}
+                style={{
+                  width: '50%',
+                  backgroundColor: COLORS.Blue,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: COLORS.White,
+                    textAlign: 'center',
+                    fontSize: 16,
+                    fontFamily: FONTFAMILY.nunitosans_semibold,
+                  }}>
+                  Xác nhận
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
 
       <View>
         <ImageBackground
@@ -189,6 +352,53 @@ const MovieDetailsScreen = ({navigation, route}: any) => {
           {convertToHoursAndMinutes(movieData.duration)}
         </Text>
       </View>
+
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: SPACING.space_10,
+        }}>
+        <CustomIcon name="star" style={styles.starIcon} />
+        <Text
+          style={{
+            color: COLORS.Black,
+            fontSize: FONTSIZE.size_18,
+            fontFamily: FONTFAMILY.nunitosans_semibold,
+            marginLeft: SPACING.space_8,
+          }}>
+          {movieData.score
+            ? `${movieData.score} (${movieData.numberOfVotes})`
+            : 'Chưa có đánh giá'}
+        </Text>
+      </View>
+      <TouchableOpacity
+        onPress={() => {
+          if (user) setModalOpen(true);
+          else {
+            ToastAndroid.show('Bạn phải đăng nhập để chấm điểm', 2000);
+          }
+        }}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingTop: SPACING.space_8,
+          }}>
+          <Text
+            style={{
+              color: COLORS.Black,
+              fontSize: FONTSIZE.size_14,
+              fontFamily: FONTFAMILY.nunitosans_semibold,
+            }}>
+            Chấm điểm
+          </Text>
+        </View>
+      </TouchableOpacity>
 
       <View>
         <Text style={styles.title}>{movieData?.name}</Text>

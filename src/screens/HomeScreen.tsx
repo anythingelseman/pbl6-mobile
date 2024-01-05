@@ -26,9 +26,12 @@ const HomeScreen = ({navigation}: any) => {
   useEffect(() => {
     (async () => {
       const response = await apiClient.get(`/film?OrderBy=id`);
+      const filteredData = response.data.data.filter(
+        (item: any) => item.enable === true,
+      );
       setNowPlayingMoviesList([
         {id: 'dummy1'},
-        ...response.data.data,
+        ...filteredData,
         {id: 'dummy2'},
       ]);
     })();
